@@ -1,0 +1,36 @@
+def checkPalindrome(str1):
+    a=0
+    b=-1
+    while (a-b)<=len(str1):
+        if str1[a]!=str1[b]:
+            return 0
+        a=a+1
+        b=b-1
+    return 1
+
+def collectSetOfPalindromes(str2):
+    l=list()
+    index1=0
+    while index1<len(str2):
+        index2 = index1+1
+        while index2 < len(str2):
+            if (str2[index1] == str2[index2]):
+                val = checkPalindrome(str2[index1:index2 + 1])
+                if val==1:
+                    l.append(str2[index1:index2 + 1])
+            index2 = index2 + 1
+        index1=index1+1
+    l.reverse()
+    return l
+
+def printList(str1,l):
+    print(' '.join(list(str1)))
+    for loop1 in l:
+        index1=str1.find(loop1)
+        print(str1[0:index1]+" "+loop1+" "+str1[index1+len(loop1):len(str1)])
+
+
+inp=input("Input:   ")
+l=collectSetOfPalindromes(inp)
+print("Output:  ")
+printList(inp,l)
